@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rabobank.Training.WebApp", "Rabobank.Training.WebApp\Rabobank.Training.WebApp.csproj", "{49B26CA3-F751-4448-9C1B-097EBABA6A92}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rabobank.Training.ClassLibrary.Tests", "Rabobank.Training.ClassLibrary.Tests\Rabobank.Training.ClassLibrary.Tests.csproj", "{D5218408-6369-4903-9FC9-8AEA8A7D9499}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rabobank.Training.ClassLibrary", "Rabobank.Training.ClassLibrary\Rabobank.Training.ClassLibrary.csproj", "{596AC722-FDD6-44B2-92C8-541423ECF665}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rabobank.Training.WebApp.Tests", "Rabobank.Training.WebApp.Tests\Rabobank.Training.WebApp.Tests.csproj", "{45E7A8DA-E9B5-4C27-9CAE-29C303D9CC7D}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Rabobank.Training.Import", "Rabobank.Training.Import\Rabobank.Training.Import.dtproj", "{15EAB2FB-8752-41E3-AB34-703DEAFEC11E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Development|Any CPU = Development|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49B26CA3-F751-4448-9C1B-097EBABA6A92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49B26CA3-F751-4448-9C1B-097EBABA6A92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49B26CA3-F751-4448-9C1B-097EBABA6A92}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{49B26CA3-F751-4448-9C1B-097EBABA6A92}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{49B26CA3-F751-4448-9C1B-097EBABA6A92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49B26CA3-F751-4448-9C1B-097EBABA6A92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5218408-6369-4903-9FC9-8AEA8A7D9499}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5218408-6369-4903-9FC9-8AEA8A7D9499}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5218408-6369-4903-9FC9-8AEA8A7D9499}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5218408-6369-4903-9FC9-8AEA8A7D9499}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{D5218408-6369-4903-9FC9-8AEA8A7D9499}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5218408-6369-4903-9FC9-8AEA8A7D9499}.Release|Any CPU.Build.0 = Release|Any CPU
+		{596AC722-FDD6-44B2-92C8-541423ECF665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{596AC722-FDD6-44B2-92C8-541423ECF665}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{596AC722-FDD6-44B2-92C8-541423ECF665}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{596AC722-FDD6-44B2-92C8-541423ECF665}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{596AC722-FDD6-44B2-92C8-541423ECF665}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{596AC722-FDD6-44B2-92C8-541423ECF665}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45E7A8DA-E9B5-4C27-9CAE-29C303D9CC7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45E7A8DA-E9B5-4C27-9CAE-29C303D9CC7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45E7A8DA-E9B5-4C27-9CAE-29C303D9CC7D}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{45E7A8DA-E9B5-4C27-9CAE-29C303D9CC7D}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{45E7A8DA-E9B5-4C27-9CAE-29C303D9CC7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45E7A8DA-E9B5-4C27-9CAE-29C303D9CC7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15EAB2FB-8752-41E3-AB34-703DEAFEC11E}.Debug|Any CPU.ActiveCfg = Development
+		{15EAB2FB-8752-41E3-AB34-703DEAFEC11E}.Debug|Any CPU.Build.0 = Development
+		{15EAB2FB-8752-41E3-AB34-703DEAFEC11E}.Development|Any CPU.ActiveCfg = Development
+		{15EAB2FB-8752-41E3-AB34-703DEAFEC11E}.Development|Any CPU.Build.0 = Development
+		{15EAB2FB-8752-41E3-AB34-703DEAFEC11E}.Release|Any CPU.ActiveCfg = Development
+		{15EAB2FB-8752-41E3-AB34-703DEAFEC11E}.Release|Any CPU.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B2580B93-8E5B-4E18-BB64-77A4E1A9394C}
+	EndGlobalSection
+EndGlobal

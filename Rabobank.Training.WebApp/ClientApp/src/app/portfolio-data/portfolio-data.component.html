@@ -1,0 +1,22 @@
+<h1 id="tableLabel">Portfolio</h1>
+
+<p>This component demonstrates fetching a portfolio from the server.</p>
+
+<p *ngIf="!positions"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="positions">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let position of positions; let i = index">
+      <td> {{ (position.code) }} </td>
+      <td> {{ (position.name) }}  </td>
+      <td> {{ position.value | currency:'EUR':symbol }} </td>
+    </tr>
+  </tbody>
+</table>
