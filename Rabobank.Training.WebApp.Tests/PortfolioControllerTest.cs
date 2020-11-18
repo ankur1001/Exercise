@@ -76,7 +76,10 @@ namespace Rabobank.Training.WebApp.Tests
         public void GetPortfolioController_Exception()
         {
             var mandateServiceMock = new Mock<IMandateService>();
-            this.controller = new PortfolioController(mandateServiceMock.Object, loggermock, _configuration);
+            var loggerMock = new Mock<ILogger<PortfolioController>>();
+            ILogger<PortfolioController> logger = loggerMock.Object;
+
+            this.controller = new PortfolioController(mandateServiceMock.Object, logger, _configuration);
 
             var portfolio = this.CreateMockPortfolio_EmptyReponse();
 

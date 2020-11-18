@@ -39,7 +39,7 @@ namespace Rabobank.Training.WebApp.Controllers
         /// </summary>
         /// <returns>.</returns>
         [HttpGet]
-        public IEnumerable<PositionVM> GetPortfolio()
+        public PortfolioVM GetPortfolio()
         {
             try
             {
@@ -60,12 +60,23 @@ namespace Rabobank.Training.WebApp.Controllers
                 _logger.LogInformation("Mandate Calculations completed.", position);
 
                 //Map Response from API
-                var response = ResponseBuilder.MapResponse(calculatedPosition);
+                var response = ResponseBuilder.MapPortfolio(calculatedPosition);
 
                 return response;
             }
+            catch (FileNotFoundException ex)
+            {
+                _logger.LogError("File does not exist", ex.FileName);
+                throw ex;
+            }
+            catch (ArgumentNullException ex)
+            {
+                _logger.LogError("Null", ex.ParamName);
+                throw ex;
+            }
             catch (Exception ex)
             {
+                _logger.LogError("There is some error.", ex.Message);
                 throw ex;
             }
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Rabobank.Training.ClassLibrary.Model;
 
@@ -60,5 +61,37 @@ namespace Rabobank.Training.WebApp.Models
 
             return mandateVMs;
         }
+
+        public static PortfolioVM MapPortfolio(List<Position> positions)
+        {
+            if (positions == null || !positions.Any())
+            {
+                return null;
+            }
+
+            PortfolioVM portfolioVM = new PortfolioVM();
+
+            portfolioVM.Positions = MapResponse(positions);
+
+            return portfolioVM;
+        }
+
+        //private static PositionVM Create(Position positions)
+        //{
+        //    if (positions == null)
+        //    {
+        //        return null;
+        //    }
+
+        //    PositionVM positionVMs = new PositionVM
+        //    {
+        //        Name = positions.Name,
+        //        Value = positions.Value,
+        //        Code = positions.Code,
+        //        Mandates = MapMandate(positions.Mandates)
+        //    };
+
+        //    return positionVMs;
+        //}
     }
 }

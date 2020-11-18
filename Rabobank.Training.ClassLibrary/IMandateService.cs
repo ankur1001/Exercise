@@ -9,13 +9,6 @@ namespace Rabobank.Training.ClassLibrary
     public interface IMandateService
     {
         /// <summary>
-        /// The Create.
-        /// </summary>
-        /// <param name="calculatedMandates">calculatedMandates.</param>
-        /// <returns>Position.</returns>
-        List<Position> Create(Position calculatedMandates);
-
-        /// <summary>
         /// Gets the list of postions available.
         /// </summary>
         /// <returns></returns>

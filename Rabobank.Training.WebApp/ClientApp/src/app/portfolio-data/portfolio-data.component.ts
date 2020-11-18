@@ -6,13 +6,13 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './portfolio-data.component.html'
 })
 export class PortfolioDataComponent {
-  public apiValues: PortfolioVM[];
+  public apiValues: PortfolioVM;
   public positions: PositionVM[];
   public mandates: MandateVM[];
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<PositionVM[]>(baseUrl + 'portfolio').subscribe(result => {
-      this.positions = result;
+    http.get<PortfolioVM>(baseUrl + 'portfolio').subscribe(result => {
+      this.apiValues = result;
     }, error => console.error(error));
   }
 }

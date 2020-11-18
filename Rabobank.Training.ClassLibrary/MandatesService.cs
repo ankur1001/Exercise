@@ -13,37 +13,6 @@ namespace Rabobank.Training.ClassLibrary
     public class MandatesService : IMandateService
     {
         /// <summary>
-        /// The Create.
-        /// </summary>
-        /// <param name="calculatedMandates">calculatedMandates.</param>
-        /// <returns>Position.</returns>
-        public List<Position> Create(Position calculatedMandates)
-        {
-            try
-            {
-                if (calculatedMandates == null)
-                {
-                    return null;
-                }
-
-                return new List<Position>()
-                {
-                   new Position()
-                   {
-                       Name = calculatedMandates.Name,
-                       Value = calculatedMandates.Value,
-                       Code = calculatedMandates.Code,
-                       Mandates = calculatedMandates.Mandates,
-                   },
-                };
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
         /// Gets the list of positions available.
         /// </summary>
         /// <returns>Portfolio.</returns>
@@ -188,11 +157,6 @@ namespace Rabobank.Training.ClassLibrary
                     FundsOfMandatesData result = (FundsOfMandatesData)serializer.Deserialize(reader);
 
                     listFundOfMandates = result.FundsOfMandates.ToList();
-
-                    //foreach (var item in result.FundsOfMandates)
-                    //{
-                    //    listFundOfMandates.Add(item);
-                    //}
                 }
 
                 return listFundOfMandates;
