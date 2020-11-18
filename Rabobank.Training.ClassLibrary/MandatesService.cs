@@ -105,42 +105,55 @@ namespace Rabobank.Training.ClassLibrary
         /// <returns></returns>
         public List<Position> CalculateMandates(List<Position> positions, List<FundOfMandates> fundOfMandates)
         {
-            if (positions == null || fundOfMandates == null || !fundOfMandates.Any())
+            try
             {
-                return null;
-            }
-
-            foreach (var p in positions)
-            {
-                foreach (var fund in fundOfMandates)
+                if (positions == null)
                 {
-                    if (p.Code == fund.InstrumentCode)
+                    throw new ArgumentNullException("positions", "Parameter can not be null.");
+                }
+
+                if (fundOfMandates == null)
+                {
+                    throw new ArgumentNullException("fundOfMandates", "Parameter can not be null.");
+                }
+
+                foreach (var p in positions)
+                {
+                    foreach (var fund in fundOfMandates)
                     {
-                        p.Mandates = new List<Model.Mandate>();
-                        for (int i = 0; i < fund.Mandates.Count(); i++)
+                        if (p.Code == fund.InstrumentCode)
                         {
-                            p.Mandates.Add(new Model.Mandate
+                            p.Mandates = new List<Model.Mandate>();
+                            for (int i = 0; i < fund.Mandates.Count(); i++)
                             {
-                                Name = fund.Mandates[i].MandateName,
-                                Allocation = fund.Mandates[i].Allocation / 100,
-                                Value = Math.Round(decimal.Multiply(p.Value, fund.Mandates[i].Allocation) / 100, MidpointRounding.AwayFromZero),
-                            });
-                        }
-                        if (fund.LiquidityAllocation > 0)
-                        {
-                            decimal total = p.Mandates.Sum(x => x.Value);
-                            p.Mandates.Add(new Model.Mandate
+                                p.Mandates.Add(new Model.Mandate
+                                {
+                                    Name = fund.Mandates[i].MandateName,
+                                    Allocation = fund.Mandates[i].Allocation,
+                                    Value = Math.Round(decimal.Multiply(p.Value, fund.Mandates[i].Allocation) / 100, MidpointRounding.AwayFromZero),
+                                });
+                            }
+                            if (fund.LiquidityAllocation > 0)
                             {
-                                Name = "Liquidity",
-                                Allocation = fund.LiquidityAllocation / 100,
-                                Value = Math.Round(decimal.Multiply(decimal.Subtract(p.Value, total), fund.LiquidityAllocation), MidpointRounding.AwayFromZero),
-                            });
+                                decimal total = p.Mandates.Sum(x => x.Value);
+                                p.Mandates.Add(new Model.Mandate
+                                {
+                                    Name = "Liquidity",
+                                    Allocation = fund.LiquidityAllocation,
+                                    Value = Math.Round(decimal.Multiply(decimal.Subtract(p.Value, total), fund.LiquidityAllocation), MidpointRounding.AwayFromZero),
+                                });
+                            }
                         }
                     }
                 }
-            }
 
-            return positions;
+                return positions;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
 
         /// <summary>
@@ -152,9 +165,19 @@ namespace Rabobank.Training.ClassLibrary
         {
             try
             {
+                if (!File.Exists(fileName))
+                {
+                    throw new FileNotFoundException("File doesnot exists.", fileName);
+                }
+
+                if (fileName == string.Empty)
+                {
+                    throw new ArgumentException("Parameter cannot be empty", "fileName");
+                }
+
                 if (fileName == null)
                 {
-                    return null;
+                    throw new ArgumentNullException("fileName", "Parameter can not be null");
                 }
 
                 List<FundOfMandates> listFundOfMandates = new List<FundOfMandates>();
@@ -164,10 +187,12 @@ namespace Rabobank.Training.ClassLibrary
                 {
                     FundsOfMandatesData result = (FundsOfMandatesData)serializer.Deserialize(reader);
 
-                    foreach (var item in result.FundsOfMandates)
-                    {
-                        listFundOfMandates.Add(item);
-                    }
+                    listFundOfMandates = result.FundsOfMandates.ToList();
+
+                    //foreach (var item in result.FundsOfMandates)
+                    //{
+                    //    listFundOfMandates.Add(item);
+                    //}
                 }
 
                 return listFundOfMandates;

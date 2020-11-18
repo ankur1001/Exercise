@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Rabobank.Training.ClassLibrary;
 using Rabobank.Training.WebApp.Models;
@@ -18,6 +19,7 @@ namespace Rabobank.Training.WebApp.Controllers
     {
         private readonly IMandateService mandateService;
         private readonly ILogger _logger;
+        private readonly IConfiguration _configuration;
         public string Message { get; set; }
 
         /// <summary>
@@ -25,10 +27,11 @@ namespace Rabobank.Training.WebApp.Controllers
         /// The PortfolioController.
         /// </summary>
         /// <param name="mandateService">mandateService.</param>
-        public PortfolioController(IMandateService mandateService, ILogger<PortfolioController> logger)
+        public PortfolioController(IMandateService mandateService, ILogger<PortfolioController> logger, IConfiguration configuration)
         {
             this.mandateService = mandateService;
             _logger = logger;
+            _configuration = configuration;
         }
 
         /// <summary>
@@ -43,8 +46,9 @@ namespace Rabobank.Training.WebApp.Controllers
                 //Get the data of postions static object
                 var portfolio = this.mandateService.GetPortfolio();
 
+                var filePath = _configuration["FilePath"];
                 //Get funds of Mandate data from file
-                string fileName = Path.GetFullPath(@"TestData/FundsOfMandatesData.xml");
+                string fileName = Path.GetFullPath(filePath);
                 var fundOfMandates = this.mandateService.GetFundOfMandatesFromXML(fileName);
 
                 _logger.LogInformation("Received funds of Mandate data from XML.", fileName.Count());

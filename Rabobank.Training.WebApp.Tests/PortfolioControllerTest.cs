@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using FluentAssertions;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -24,6 +25,7 @@ namespace Rabobank.Training.WebApp.Tests
         private PortfolioController controller;
         private Mock<IMandateService> mandateServiceMock;
         private Logger<PortfolioController> loggermock;
+        private IConfiguration _configuration;
 
         /// <summary>
         /// The mock Setup.
@@ -32,7 +34,7 @@ namespace Rabobank.Training.WebApp.Tests
         public void Setup()
         {
             this.mandateServiceMock = new Mock<IMandateService>();
-            this.controller = new PortfolioController(this.mandateServiceMock.Object, loggermock);
+            this.controller = new PortfolioController(this.mandateServiceMock.Object, loggermock, _configuration);
         }
 
         /// <summary>
@@ -41,10 +43,12 @@ namespace Rabobank.Training.WebApp.Tests
         [TestMethod]
         public void GetPortfolioController_Success()
         {
+            var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+
             var mandateServiceMock = new Mock<IMandateService>();
             var loggerMock = new Mock<ILogger<PortfolioController>>();
             ILogger<PortfolioController> logger = loggerMock.Object;
-            this.controller = new PortfolioController(mandateServiceMock.Object, logger);
+            this.controller = new PortfolioController(mandateServiceMock.Object, logger, config);
 
             var position = this.CreateMockPosition();
             var portfolio = this.CreateMockPortfolio();
@@ -72,7 +76,7 @@ namespace Rabobank.Training.WebApp.Tests
         public void GetPortfolioController_Exception()
         {
             var mandateServiceMock = new Mock<IMandateService>();
-            this.controller = new PortfolioController(mandateServiceMock.Object, loggermock);
+            this.controller = new PortfolioController(mandateServiceMock.Object, loggermock, _configuration);
 
             var portfolio = this.CreateMockPortfolio_EmptyReponse();
 
@@ -97,11 +101,12 @@ namespace Rabobank.Training.WebApp.Tests
         [TestMethod]
         public void GetPortfolioController_EmptyResponse()
         {
+            var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var mandateServiceMock = new Mock<IMandateService>();
             var loggerMock = new Mock<ILogger<PortfolioController>>();
             ILogger<PortfolioController> logger = loggerMock.Object;
 
-            this.controller = new PortfolioController(mandateServiceMock.Object, logger);
+            this.controller = new PortfolioController(mandateServiceMock.Object, logger, config);
 
             var portfolio = this.CreateMockPortfolio_EmptyReponse();
 
