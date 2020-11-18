@@ -23,16 +23,16 @@
         <table class='table table-striped' aria-labelledby="tableLabel">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Value</th>
-              <th>Allocation</th>
+              <th></th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let mandate of position.mandates">
               <td> {{ (mandate.name) }} </td>
-              <td> {{ (mandate.value) }} </td>
-              <td> {{ (mandate.allocation) }} </td>
+              <td> {{ (mandate.allocation) }} % </td>
+              <td> {{ (mandate.value | currency:'EUR':symbol) }} </td>
             </tr>
           </tbody>
         </table>
