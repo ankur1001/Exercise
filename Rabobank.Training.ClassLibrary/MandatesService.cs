@@ -78,12 +78,12 @@ namespace Rabobank.Training.ClassLibrary
             {
                 if (positions == null)
                 {
-                    throw new ArgumentNullException("positions", "Parameter can not be null.");
+                    throw new ArgumentNullException("positions", "Parameter can not be null");
                 }
 
                 if (fundOfMandates == null)
                 {
-                    throw new ArgumentNullException("fundOfMandates", "Parameter can not be null.");
+                    throw new ArgumentNullException("fundOfMandates", "Parameter can not be null");
                 }
 
                 foreach (var p in positions)
@@ -134,11 +134,6 @@ namespace Rabobank.Training.ClassLibrary
         {
             try
             {
-                if (!File.Exists(fileName))
-                {
-                    throw new FileNotFoundException("File doesnot exists.", fileName);
-                }
-
                 if (fileName == string.Empty)
                 {
                     throw new ArgumentException("Parameter cannot be empty", "fileName");
@@ -147,6 +142,11 @@ namespace Rabobank.Training.ClassLibrary
                 if (fileName == null)
                 {
                     throw new ArgumentNullException("fileName", "Parameter can not be null");
+                }
+
+                if (!File.Exists(fileName))
+                {
+                    throw new FileNotFoundException("File doesnot exists.", fileName);
                 }
 
                 List<FundOfMandates> listFundOfMandates = new List<FundOfMandates>();
